@@ -62,8 +62,8 @@
       <param name="API_KEY_FOR_ANDROID" value="AIzaSyAOSRAaoQhAuIQkG8uQu2XnV4Wo0WWB7vk" />
   </plugin>
   <!-- <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" >
-    <variable name="GOOGLE_API_KEY_FOR_ANDROID" value="AIzaSyAOSRAaoQhAuIQkG8uQu2XnV4Wo0WWB7vk" /> -->
-</plugin>
+    <variable name="GOOGLE_API_KEY_FOR_ANDROID" value="AIzaSyAOSRAaoQhAuIQkG8uQu2XnV4Wo0WWB7vk" />
+</plugin> -->
   <icon src="icon.png"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>

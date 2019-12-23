@@ -99,6 +99,7 @@ function checkState(delay){
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var lt = position.coords.latitude;
                         var ln = position.coords.longitude;
+                        showDebug(lt+', '+ln);
                         //to set the location on startup then declare as below
                         // lt = 21.16980812743961; // mysuru
                         // ln = 79.0795353478851;

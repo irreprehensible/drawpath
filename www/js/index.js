@@ -226,7 +226,9 @@ function requestLocation(){
 }
 
 function getLocShowMap(lt, ln){
+    showDebug(lt+', '+ln);
     var loc = new plugin.google.maps.LatLng(lt,ln);
+    showDebug(loc);
     map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
         map.addMarker({
         'position': loc,

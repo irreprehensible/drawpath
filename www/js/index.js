@@ -66,6 +66,7 @@ function onOffline(){
     $('#divOffline').show();
 }
 function checkState(delay){
+    showDebug('in checkstate');
     var networkState = navigator.connection.type;
     if(networkState == Connection.NONE)
         {

@@ -87,7 +87,7 @@ function checkState(delay){
                 var ltln = JSON.parse($('#hidCurrentLocation').val());
                 buttons(false);
                 hidealerts();
-                getmasjids(ltln.lat, ltln.lng);
+                //getmasjids(ltln.lat, ltln.lng);
             }
         }
         //location check

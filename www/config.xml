@@ -59,7 +59,7 @@
     <host name="masjidnear.me" scheme="https" event="locEvent" />
   </universal-links> -->
   <plugin name="cordova-plugin-googlemaps" spec="2.5.3">
-      <param name="API_KEY_FOR_ANDROID" value="AIzaSyAOSRAaoQhAuIQkG8uQu2XnV4Wo0WWB7vk" />
+      <param name="API_KEY_FOR_ANDROID" value="AIzaSyC3hxO4-oi1bOdq8kqVeQhAjEMcTmK6t3M" />
   </plugin>
   <!-- <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" >
     <variable name="GOOGLE_API_KEY_FOR_ANDROID" value="AIzaSyAOSRAaoQhAuIQkG8uQu2XnV4Wo0WWB7vk" />

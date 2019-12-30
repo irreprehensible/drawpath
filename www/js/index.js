@@ -66,7 +66,6 @@ function onOffline(){
     $('#divOffline').show();
 }
 function checkState(delay){
-    showDebug('in checkstate');
     var networkState = navigator.connection.type;
     if(networkState == Connection.NONE)
         {
@@ -116,7 +115,7 @@ function checkState(delay){
                         map = plugin.google.maps.Map.getMap(mapDiv, {
                             'camera': {
                             'latLng': loc,
-                            'zoom': 13
+                            'zoom': 17
                             }
                         });
                         //showDebug('getting settings');
@@ -228,9 +227,7 @@ function requestLocation(){
 }
 
 function getLocShowMap(lt, ln){
-    showDebug(lt+', '+ln);
     var loc = new plugin.google.maps.LatLng(lt,ln);
-    showDebug(loc);
     map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
         map.addMarker({
         'position': loc,

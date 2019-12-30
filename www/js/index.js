@@ -258,6 +258,9 @@ function getLocShowMap(lt, ln){
 function updateLocation(){
     showDebug('update location');
     var prevLoc = JSON.parse($('#hidCurrentLocation').val());
+    var option = {
+        enableHighAccuracy: true // use GPS as much as possible
+      };
     plugin.google.maps.LocationService.getMyLocation(option, function(curLoc) {
         if(curLoc !== prevLoc){
             showDebug('updating...');

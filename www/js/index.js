@@ -247,8 +247,8 @@ function getLocShowMap(lt, ln){
     });
     //unlock portrait screen
     screen.orientation.unlock();
-    setTimeout(() => {
-        updateLocation();    
+    setInterval(() => {
+        updateLocation();
     }, updateIn);
     
 }

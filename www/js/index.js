@@ -1,5 +1,5 @@
 //global map var
-const appVersion = '2.5.41';
+const appVersion = '1.0.0.';
 var map;
 var settings; //settings file
 var firstUse=false;
@@ -9,7 +9,7 @@ var fired = false;
 var exitBit = false;
 var multiLoad= false;
 var urlLoc='';
-var updateIn = 3;
+var updateIn = 3000;
 var mnuItems = [
                 {"name":"Settings","icon":"fa fa-cog fa-lg","fun":"showSettings()"},
                 {"name":"Users","icon":"fa fa-user fa-2x","fun":"ShowSignIn()"},

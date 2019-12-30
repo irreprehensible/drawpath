@@ -10,6 +10,7 @@ var exitBit = false;
 var multiLoad= false;
 var urlLoc='';
 var updateIn = 3000;
+var marker;
 var mnuItems = [
                 {"name":"Settings","icon":"fa fa-cog fa-lg","fun":"showSettings()"},
                 {"name":"Users","icon":"fa fa-user fa-2x","fun":"ShowSignIn()"},
@@ -230,7 +231,7 @@ function requestLocation(){
 function getLocShowMap(lt, ln){
     var loc = new plugin.google.maps.LatLng(lt,ln);
     map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-        map.addMarker({
+        marker = map.addMarker({
         'position': loc,
         'draggable': false,
         'icon':'./img/pin.png'
@@ -254,20 +255,27 @@ function getLocShowMap(lt, ln){
 }
 
 function updateLocation(){
-    showDebug('in update');
     var prevLoc = JSON.parse($('#hidCurrentLocation').val());
-    var curLoc = new plugin.google.maps.LatLng(lt,ln);
-    if(curLoc !== prevLoc){
-        showDebug('updating...');
-    $('#hidCurrentLocation').val(JSON.stringify(curLoc));
-    map = plugin.google.maps.Map.getMap(mapDiv, {
-        'camera': {
-          target: curLoc
-          //zoom: 16
+    plugin.google.maps.LocationService.getMyLocation(option, function(curLoc) {
+        if(curLoc !== prevLoc){
+            showDebug('updating...');
+            $('#hidCurrentLocation').val(JSON.stringify(curLoc));
+            map.moveCamera({
+                target: curLoc
+              }, function() {
+                  // Remove the marker.
+                  marker.remove();
+                  marker = map.addMarker({
+                    'position': curLoc,
+                    'draggable': false,
+                    'icon':'./img/pin.png'
+                    }, function(marker) {
+                        ///
+                    });
+              });
+            drawPath(prevLoc, curLoc);
         }
-      });
-    drawPath(prevLoc, curLoc);
-    }
+    });
 }
 function drawPath(prevLoc, curLoc){
     var path = [prevLoc,curLoc];
@@ -293,7 +301,6 @@ function showAlert(msg, delay) {
     }
 }
 function showDebug(msg) {
-    $('#debugLoader').fadeOut('slow');
     $('#debugLoader').html(msg);
     $('#debugLoader').fadeIn('fast');
 }

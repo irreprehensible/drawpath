@@ -1,7 +1,7 @@
 //global map var
+const appVersion = '2.5.41';
 var map;
 var settings; //settings file
-const appVersion = '2.5.41';
 var firstUse=false;
 var firstLoad=false;
 var markers = [];
@@ -9,6 +9,7 @@ var fired = false;
 var exitBit = false;
 var multiLoad= false;
 var urlLoc='';
+var updateIn = 3;
 var mnuItems = [
                 {"name":"Settings","icon":"fa fa-cog fa-lg","fun":"showSettings()"},
                 {"name":"Users","icon":"fa fa-user fa-2x","fun":"ShowSignIn()"},
@@ -115,7 +116,7 @@ function checkState(delay){
                         map = plugin.google.maps.Map.getMap(mapDiv, {
                             'camera': {
                             'latLng': loc,
-                            'zoom': 17
+                            'zoom': 19
                             }
                         });
                         //showDebug('getting settings');
@@ -246,8 +247,38 @@ function getLocShowMap(lt, ln){
     });
     //unlock portrait screen
     screen.orientation.unlock();
+    setTimeout(() => {
+        updateLocation();    
+    }, updateIn);
+    
 }
 
+function updateLocation(){
+    showDebug('in update');
+    var prevLoc = JSON.parse($('#hidCurrentLocation').val());
+    var curLoc = new plugin.google.maps.LatLng(lt,ln);
+    if(curLoc !== prevLoc){
+        showDebug('updating...');
+    $('#hidCurrentLocation').val(JSON.stringify(curLoc));
+    map = plugin.google.maps.Map.getMap(mapDiv, {
+        'camera': {
+          target: curLoc
+          //zoom: 16
+        }
+      });
+    drawPath(prevLoc, curLoc);
+    }
+}
+function drawPath(prevLoc, curLoc){
+    var path = [prevLoc,curLoc];
+    // Add a polyline
+    map.addPolyline({
+        'points': path,
+        'color' : '#AA00FF',
+        'width': 10,
+        'geodesic': true
+    });
+}
 
 function showAlert(msg, delay) {
     $('#loader').hide();
@@ -262,9 +293,9 @@ function showAlert(msg, delay) {
     }
 }
 function showDebug(msg) {
-
+    $('#debugLoader').fadeOut('slow');
     $('#debugLoader').html(msg);
-    $('#debugLoader').show();
+    $('#debugLoader').fadeIn('fast');
 }
 function hideDebug(){
     $('#debugLoader').fadeOut('slow');

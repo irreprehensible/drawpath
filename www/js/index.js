@@ -231,11 +231,12 @@ function requestLocation(){
 function getLocShowMap(lt, ln){
     var loc = new plugin.google.maps.LatLng(lt,ln);
     map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
-        marker = map.addMarker({
+        map.addMarker({
         'position': loc,
         'draggable': false,
         'icon':'./img/pin.png'
-        }, function(marker) {
+        }, function(m) {
+            marker = m;
             //allow drag
             // marker.addEventListener(plugin.google.maps.event.MARKER_DRAG_END, function(mloc) {
             //     map.setCameraTarget(mloc);
@@ -255,6 +256,7 @@ function getLocShowMap(lt, ln){
 }
 
 function updateLocation(){
+    showDebug('update location');
     var prevLoc = JSON.parse($('#hidCurrentLocation').val());
     plugin.google.maps.LocationService.getMyLocation(option, function(curLoc) {
         if(curLoc !== prevLoc){
@@ -281,7 +283,7 @@ function drawPath(prevLoc, curLoc){
     var path = [prevLoc,curLoc];
     // Add a polyline
     map.addPolyline({
-        'points': path,
+        'points': path, 
         'color' : '#AA00FF',
         'width': 10,
         'geodesic': true
